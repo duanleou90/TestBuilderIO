@@ -1,5 +1,6 @@
 // Export all Builder.io custom components
 export { Header, headerInfo } from './Header';
+export { PageBanner, pageBannerInfo } from './PageBanner';
 export { HeroBanner, heroBannerInfo } from './HeroBanner';
 export { FeatureBoxes, featureBoxesInfo } from './FeatureBoxes';
 export { WelcomeSection, welcomeSectionInfo } from './WelcomeSection';

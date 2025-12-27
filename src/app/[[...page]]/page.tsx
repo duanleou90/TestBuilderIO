@@ -33,17 +33,40 @@ export default async function Page(props: PageProps) {
     );
   }
 
+  // Map URL paths to content models
+  const modelMapping: { [key: string]: string } = {
+    '/': 'home-page',
+    '/about-us': 'about-us-page',
+    // Add more mappings as needed
+  };
+
+  // Determine which model to use based on the URL path
+  const model = modelMapping[urlPath] || 'home-page';
+
   const content = await fetchOneEntry({
-    model: 'home-page',
+    model,
     apiKey,
     userAttributes: {
       urlPath,
     },
+    options: {
+      // In development, show draft content; in production, only show published
+      includeUnpublished: process.env.NODE_ENV === 'development',
+    },
   });
+
+  // Log for debugging
+  if (!content && process.env.NODE_ENV === 'development') {
+    console.log(`[Builder.io Debug] No content found for:`, {
+      model,
+      urlPath,
+      apiKey: apiKey ? '✓ Set' : '✗ Missing',
+    });
+  }
 
   return (
     <>
-      <RenderBuilderContent content={content} model="home-page" />
+      <RenderBuilderContent content={content} model={model} />
     </>
   );
 }

@@ -43,11 +43,11 @@ export function FeatureBoxes({
 }: FeatureBoxesProps) {
   return (
     <div className="section services">
-      <div className="content-wrap">
+      <div className="content-wrap pb-0">
         <div className="container">
           <div className="row">
             <div className="col-sm-12 col-md-12">
-              <div className="row col-0 overlap no-gutters">
+              <div className="row col-0 no-gutters">
                 {boxes.map((box, index) => (
                   <div key={index} className="col-sm-12 col-md-4 col-lg-4">
                     <div className={`rs-feature-box-1 bg-${box.bgColor}`}>

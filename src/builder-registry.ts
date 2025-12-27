@@ -4,6 +4,7 @@ import { type RegisteredComponent } from '@builder.io/sdk-react';
 
 // Import all custom components
 import { Header, headerInfo } from './components/builder/Header';
+import { PageBanner, pageBannerInfo } from './components/builder/PageBanner';
 import { HeroBanner, heroBannerInfo } from './components/builder/HeroBanner';
 import { FeatureBoxes, featureBoxesInfo } from './components/builder/FeatureBoxes';
 import { WelcomeSection, welcomeSectionInfo } from './components/builder/WelcomeSection';
@@ -21,6 +22,10 @@ export const customComponents: RegisteredComponent[] = [
   {
     component: Header,
     ...headerInfo,
+  },
+  {
+    component: PageBanner,
+    ...pageBannerInfo,
   },
   {
     component: HeroBanner,
