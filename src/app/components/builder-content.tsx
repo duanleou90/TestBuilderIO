@@ -1,8 +1,15 @@
 'use client';
 
-import { Content, isPreviewing } from '@builder.io/sdk-react';
-import { customComponents } from '../../builder-registry';
+import { BuilderComponent, builder, useIsPreviewing } from '@builder.io/react';
 import { useEffect, useState } from 'react';
+
+// Import the registry to ensure components are registered
+import '../../builder-registry';
+
+// Initialize Builder with API key (client-side only)
+if (typeof window !== 'undefined') {
+  builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY || '');
+}
 
 interface BuilderContentProps {
   content: any;
@@ -10,16 +17,17 @@ interface BuilderContentProps {
 }
 
 export function RenderBuilderContent({ content, model }: BuilderContentProps) {
-  const apiKey = process.env.NEXT_PUBLIC_BUILDER_API_KEY || '';
+  const isPreviewing = useIsPreviewing();
   const [isMounted, setIsMounted] = useState(false);
 
-  // Only render Content on client to avoid hydration mismatch
+  // Initialize Builder on mount and handle hydration
   useEffect(() => {
+    builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY || '');
     setIsMounted(true);
   }, []);
   
   // If no content is found and we're not in preview mode, show a message
-  if (!content && !isPreviewing()) {
+  if (!content && !isPreviewing) {
     return (
       <div style={{ padding: '50px', textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
         <h1>Page Not Found</h1>
@@ -53,11 +61,9 @@ export function RenderBuilderContent({ content, model }: BuilderContentProps) {
   }
 
   return (
-    <Content
+    <BuilderComponent
       content={content}
       model={model}
-      apiKey={apiKey}
-      customComponents={customComponents}
     />
   );
 }

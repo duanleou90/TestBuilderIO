@@ -1,6 +1,6 @@
 'use client';
 
-import { type RegisteredComponent } from '@builder.io/sdk-react';
+import { Builder } from '@builder.io/react';
 
 // Import all custom components
 import { Header, headerInfo } from './components/builder/Header';
@@ -17,58 +17,38 @@ import { TestimonialsSection, testimonialsSectionInfo } from './components/build
 import { CTASection, ctaSectionInfo } from './components/builder/CTASection';
 import { Footer, footerInfo } from './components/builder/Footer';
 
-// Define custom components for Builder.io
-export const customComponents: RegisteredComponent[] = [
-  {
-    component: Header,
-    ...headerInfo,
-  },
-  {
-    component: PageBanner,
-    ...pageBannerInfo,
-  },
-  {
-    component: HeroBanner,
-    ...heroBannerInfo,
-  },
-  {
-    component: FeatureBoxes,
-    ...featureBoxesInfo,
-  },
-  {
-    component: WelcomeSection,
-    ...welcomeSectionInfo,
-  },
-  {
-    component: FunFacts,
-    ...funFactsInfo,
-  },
-  {
-    component: ClassesSection,
-    ...classesSectionInfo,
-  },
-  {
-    component: WhyChooseUs,
-    ...whyChooseUsInfo,
-  },
-  {
-    component: GallerySection,
-    ...gallerySectionInfo,
-  },
-  {
-    component: EventsSection,
-    ...eventsSectionInfo,
-  },
-  {
-    component: TestimonialsSection,
-    ...testimonialsSectionInfo,
-  },
-  {
-    component: CTASection,
-    ...ctaSectionInfo,
-  },
-  {
-    component: Footer,
-    ...footerInfo,
-  },
-];
+// Event page components
+import { EventPageLayout, eventPageLayoutInfo } from './components/builder/EventPageLayout';
+import { EventHeader, eventHeaderInfo } from './components/builder/EventHeader';
+import { EventSidebar, eventSidebarInfo } from './components/builder/EventSidebar';
+import { EventTextBlock, eventTextBlockInfo } from './components/builder/EventTextBlock';
+import { EventQuote, eventQuoteInfo } from './components/builder/EventQuote';
+import { EventHighlight, eventHighlightInfo } from './components/builder/EventHighlight';
+import { EventAccordion, eventAccordionInfo } from './components/builder/EventAccordion';
+
+// Only register components on the client side
+if (typeof window !== 'undefined') {
+  // Register all custom components with Builder.io (Gen 1 pattern)
+  Builder.registerComponent(Header, headerInfo);
+  Builder.registerComponent(PageBanner, pageBannerInfo);
+  Builder.registerComponent(HeroBanner, heroBannerInfo);
+  Builder.registerComponent(FeatureBoxes, featureBoxesInfo);
+  Builder.registerComponent(WelcomeSection, welcomeSectionInfo);
+  Builder.registerComponent(FunFacts, funFactsInfo);
+  Builder.registerComponent(ClassesSection, classesSectionInfo);
+  Builder.registerComponent(WhyChooseUs, whyChooseUsInfo);
+  Builder.registerComponent(GallerySection, gallerySectionInfo);
+  Builder.registerComponent(EventsSection, eventsSectionInfo);
+  Builder.registerComponent(TestimonialsSection, testimonialsSectionInfo);
+  Builder.registerComponent(CTASection, ctaSectionInfo);
+  Builder.registerComponent(Footer, footerInfo);
+
+  // Event page components
+  Builder.registerComponent(EventPageLayout, eventPageLayoutInfo);
+  Builder.registerComponent(EventHeader, eventHeaderInfo);
+  Builder.registerComponent(EventSidebar, eventSidebarInfo);
+  Builder.registerComponent(EventTextBlock, eventTextBlockInfo);
+  Builder.registerComponent(EventQuote, eventQuoteInfo);
+  Builder.registerComponent(EventHighlight, eventHighlightInfo);
+  Builder.registerComponent(EventAccordion, eventAccordionInfo);
+}
